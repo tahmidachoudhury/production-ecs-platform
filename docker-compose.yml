@@ -1,6 +1,6 @@
 services:
   umami:
-    image: test-dockerfile:multistage
+    image: 851725183654.dkr.ecr.eu-west-2.amazonaws.com/umami-ecs:latest
     ports:
       - "3000:3000"
     environment:

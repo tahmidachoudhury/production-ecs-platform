@@ -3,6 +3,9 @@ services:
     image: test-dockerfile:multistage
     ports:
       - "3000:3000"
+    environment:
+      DATABASE_URL: postgresql://umami:umami@db:5432/umami
+      APP_SECRET: random-string
     restart: always
     healthcheck:
       test: ["CMD-SHELL", "curl http://localhost:3000/api/heartbeat"]

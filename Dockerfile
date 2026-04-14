@@ -1,6 +1,7 @@
 # stage 1: dependencies
+ARG NODE_IMAGE_VERSION="22-slim"
 
-FROM node:22-slim AS deps
+FROM ${NODE_IMAGE_VERSION} AS deps
 WORKDIR /app
 COPY package.json pnpm-lock.yaml ./
 RUN npm install -g pnpm
@@ -8,7 +9,7 @@ RUN pnpm install --frozen-lockfile
 
 # stage 2: build
 
-FROM node:22-slim AS build
+FROM ${NODE_IMAGE_VERSION} AS build
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
@@ -17,7 +18,7 @@ RUN npm run build-docker
 
 # stage 3: run
 
-FROM node:22-slim AS runner
+FROM ${NODE_IMAGE_VERSION} AS runner
 WORKDIR /app
 
 ARG PRISMA_VERSION="6.19.0"

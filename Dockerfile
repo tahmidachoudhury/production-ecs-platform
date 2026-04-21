@@ -11,6 +11,7 @@ RUN pnpm install --frozen-lockfile
 
 FROM node:${NODE_IMAGE_VERSION} AS build
 WORKDIR /app
+COPY global-bundle.pem /app/global-bundle.pem
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 ENV DATABASE_URL="postgresql://user:pass@localhost:5432/dummy"

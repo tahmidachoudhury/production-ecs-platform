@@ -30,6 +30,7 @@ RUN pnpm --allow-build='@prisma/engines' add npm-run-all dotenv chalk semver \
     prisma@${PRISMA_VERSION} \
     @prisma/adapter-pg@${PRISMA_VERSION}
 
+COPY --from=build /app/global-bundle.pem /app/global-bundle.pem
 COPY --from=build /app/public ./public
 COPY --from=build /app/prisma ./prisma
 COPY --from=build /app/scripts ./scripts

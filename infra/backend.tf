@@ -7,12 +7,12 @@ terraform {
   }
 
   backend "s3" {
-    bucket = "umami-ecs-terraform-state"
-    key    = "terraform.tfstate"
-    region = "us-east-2"
+    bucket  = "umami-ecs-terraform-state"
+    key     = "terraform.tfstate"
+    region  = "us-east-2"
     encrypt = true
 
-#   state locking set to true
+    #   state locking set to true
     use_lockfile = true
 
     workspace_key_prefix = "umami-ecs-app"

@@ -10,45 +10,25 @@ resource "aws_vpc" "main" {
   }
 }
 
-resource "aws_subnet" "public-1" {
+resource "aws_subnet" "public" {
+  count = length(var.public_subnet_cidr)
   vpc_id     = aws_vpc.main.id
-  cidr_block = "10.0.1.0/24"
+  cidr_block = var.public_subnet_cidr[count.index]
   map_public_ip_on_launch = true
-  availability_zone = "eu-west-2a"
+  availability_zone = var.availability_zone[count.index]
 
   tags = {
-    Name = "${var.project_name}-public-subnet-1"
+    Name = "${var.project_name}-public-subnet-${count.index + 1}"
     Environment = var.environment
   }
 }
-resource "aws_subnet" "public-2" {
-  vpc_id     = aws_vpc.main.id
-  cidr_block = "10.0.1.0/24"
-  map_public_ip_on_launch = true
-  availability_zone = "eu-west-2b"
 
-  tags = {
-    Name = "${var.project_name}-public-subnet-2"
-    Environment = var.environment
-  }
-}
-resource "aws_subnet" "private-1" {
+resource "aws_subnet" "private" {
   vpc_id     = aws_vpc.main.id
-  cidr_block = "10.0.10.0/24"
-  map_public_ip_on_launch = true
-  availability_zone = "eu-west-2a"
+  cidr_block = var.private_subnet_cidr[count.index]
+  availability_zone = var.availability_zone[count.index]
   tags = {
-    Name = "${var.project_name}-private-subnet-1"
-    Environment = var.environment
-  }
-}
-resource "aws_subnet" "private-2" {
-  vpc_id     = aws_vpc.main.id
-  cidr_block = "10.0.11.0/24"
-  map_public_ip_on_launch = true
-  availability_zone = "eu-west-2b"
-  tags = {
-    Name = "${var.project_name}-private-subnet-2"
+    Name = "${var.project_name}-private-subnet-${count.index + 1}"
     Environment = var.environment
   }
 }

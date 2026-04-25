@@ -1,0 +1,10 @@
+repos:
+  - repo: https://github.com/AleksaC/tffumpt
+    rev: v0.1.1
+    hooks:
+      - id: tffumpt
+
+  - repo: https://github.com/gitleaks/gitleaks
+    rev: v8.18.1
+    hooks:
+      - id: gitleaks

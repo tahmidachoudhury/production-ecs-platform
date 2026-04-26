@@ -34,16 +34,73 @@ resource "aws_subnet" "private" {
   }
 }
 
+resource "aws_internet_gateway" "main" {
+  vpc_id = aws_vpc.main.id
+
+  tags = {
+    Name        = "${var.project_name}-igw"
+    Environment = var.environment
+  }
+}
+
 resource "aws_route_table" "public" {
   vpc_id = aws_vpc.main.id
 
   route {
-    cidr_block = "10.0.1.0/24"
-    gateway_id = aws_internet_gateway.example.id
+    cidr_block = "0.0.0.0/0"
+    gateway_id = aws_internet_gateway.main.id
   }
 
   tags = {
-    Name = "${var.project_name}-public-rt"
+    Name        = "${var.project_name}-public-rt"
     Environment = var.environment
   }
+}
+
+resource "aws_route_table_association" "public" {
+  count          = length(var.public_subnet_cidr)
+  subnet_id      = aws_subnet.public[count.index].id
+  route_table_id = aws_route_table.public.id
+}
+
+resource "aws_eip" "natgw" {
+  domain = "vpc"
+
+  tags = {
+    Name        = "${var.project_name}-nat-eip"
+    Environment = var.environment
+  }
+}
+
+resource "aws_route_table" "private" {
+  vpc_id = aws_vpc.main.id
+
+  route {
+    cidr_block = "0.0.0.0/0"
+    gateway_id = aws_nat_gateway.main.id
+  }
+
+  tags = {
+    Name        = "${var.project_name}-private-rt"
+    Environment = var.environment
+  }
+}
+
+# For cost control, this deploys a single NAT gateway. In production, I would deploy one NAT gateway per AZ for high availability and avoid cross AZ dependency.
+resource "aws_nat_gateway" "main" {
+  allocation_id = aws_eip.natgw.id
+  subnet_id     = aws_subnet.public[0].id
+
+  tags = {
+    Name        = "${var.project_name}-natgw"
+    Environment = var.environment
+  }
+
+  depends_on = [aws_internet_gateway.main]
+}
+
+resource "aws_route_table_association" "private" {
+  count          = length(var.private_subnet_cidr)
+  subnet_id      = aws_subnet.private[count.index].id
+  route_table_id = aws_route_table.private.id
 }

@@ -17,4 +17,5 @@ module "alb" {
   environment    = var.environment
   alb_sg_id      = module.security_groups.alb_sg_id
   public_subnets = module.networking.public_subnets
+  vpc_id         = module.networking.vpc_id
 }

@@ -12,9 +12,9 @@ module "security_groups" {
 }
 
 module "alb" {
-  source               = "./modules/alb"
-  project_name         = var.project_name
-  environment          = var.environment
-  alb_sg_id            = module.security_groups.alb_sg_id
-  aws_public_subnet_id = module.networking.aws_public_subnet_id
+  source         = "./modules/alb"
+  project_name   = var.project_name
+  environment    = var.environment
+  alb_sg_id      = module.security_groups.alb_sg_id
+  public_subnets = module.networking.public_subnets
 }

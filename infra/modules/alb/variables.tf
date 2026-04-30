@@ -13,7 +13,7 @@ variable "alb_sg_id" {
   description = "The ID of the ALB Security Group"
 }
 
-variable "aws_public_subnet_id" {
-  type        = string
-  description = "The ID of AWS public subnet"
+variable "public_subnets" {
+  type        = list(string)
+  description = "The list of public subnets for the ALBs"
 }

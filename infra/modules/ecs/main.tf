@@ -22,16 +22,61 @@ resource "aws_ecs_task_definition" "app" {
   execution_role_arn       = var.execution_role_arn
   container_definitions = jsonencode([
     {
-      name      = "${var.project_name}-container"
+      name      = var.container_name
       image     = var.container_image
       essential = true
       portMappings = [
         {
-          containerPort = 3000
+          containerPort = var.container_port
           hostPort      = 3000
           protocol      = "tcp"
         },
       ]
+
+      environment = [
+        {
+          name  = "APP_SECRET"
+          value = "random string"
+        },
+        {
+          name  = "DATABASE_URL"
+          value = var.db_secret
+        },
+      ]
+
+      logConfiguration = {
+        logDriver = "awslogs"
+        options = {
+          awslogs-group         = var.cloudwatch_log_group_name
+          awslogs-region        = var.aws_region
+          awslogs-stream-prefix = "ecs"
+        }
+      }
     },
   ])
+
+  tags = {
+    Name        = "${var.project_name}-task-def"
+    Environment = var.environment
+  }
+}
+
+resource "aws_ecs_service" "app" {
+  name            = "${var.project_name}-service"
+  cluster         = aws_ecs_cluster.main.id
+  task_definition = aws_ecs_task_definition.app.arn
+  desired_count   = var.desired_count
+  launch_type     = "FARGATE"
+
+  load_balancer {
+    target_group_arn = var.alb_target_group.arn
+    container_name   = var.container_name
+    container_port   = var.container_port
+  }
+
+  tags = {
+    Name        = "${var.project_name}-service"
+    Environment = var.environment
+    Description = "Managed service for the ${var.project_name} application."
+  }
 }

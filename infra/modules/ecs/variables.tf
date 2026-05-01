@@ -16,11 +16,13 @@ variable "container_image" {
 variable "cpu" {
   type        = number
   description = "The unit of CPU that the task definition needs."
+  default     = "256"
 }
 
 variable "memory" {
   type        = number
   description = "The unit of memory that the task definition needs."
+  default     = "512"
 }
 
 variable "task_role_arn" {
@@ -67,4 +69,14 @@ variable "container_name" {
   type        = string
   description = "The name of the ECS container: defaults to project name below."
   default     = "${var.project_name}-container"
+}
+
+variable "ecs_sg" {
+  type        = string
+  description = "The ECS security group."
+}
+
+variable "private_subnet_ids" {
+  description = "List of private subnet IDs where ECS tasks will run."
+  type        = list(string)
 }

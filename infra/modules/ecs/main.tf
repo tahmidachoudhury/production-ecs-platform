@@ -68,6 +68,12 @@ resource "aws_ecs_service" "app" {
   desired_count   = var.desired_count
   launch_type     = "FARGATE"
 
+  network_configuration {
+    security_groups  = [var.ecs_sg]
+    subnets          = var.private_subnet_ids
+    assign_public_ip = false
+  }
+
   load_balancer {
     target_group_arn = var.alb_target_group.arn
     container_name   = var.container_name

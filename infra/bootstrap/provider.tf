@@ -8,12 +8,12 @@ terraform {
 }
 
 provider "aws" {
-  region = "eu-west-2"
+  region = var.region
 
   default_tags {
     tags = {
-      Environment = "dev"
-      Project     = "umami-ecs"
+      Environment = var.environment
+      Project     = var.project_name
     }
   }
 }

@@ -8,3 +8,9 @@ variable "environment" {
   description = "Deployment environment (dev, staging, or prod)."
   type        = string
 }
+
+variable "region" {
+  description = "Region for infrastructure deployment."
+  type        = string
+  default     = "eu-west-2"
+}

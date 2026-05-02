@@ -16,13 +16,11 @@ variable "container_image" {
 variable "cpu" {
   type        = number
   description = "The unit of CPU that the task definition needs."
-  default     = "256"
 }
 
 variable "memory" {
   type        = number
   description = "The unit of memory that the task definition needs."
-  default     = "512"
 }
 
 variable "task_role_arn" {
@@ -55,23 +53,22 @@ variable "desired_count" {
   type        = number
 }
 
-variable "alb_target_group" {
+variable "alb_target_group_arn" {
   description = "The ALB target group that the ECS service registers with."
+  type        = string
 }
 
 variable "container_port" {
   description = "The port the container listens on."
   type        = number
-  default     = 3000
 }
 
 variable "container_name" {
   type        = string
-  description = "The name of the ECS container: defaults to project name below."
-  default     = "${var.project_name}-container"
+  description = "The name of the ECS container: defaults to project name."
 }
 
-variable "ecs_sg" {
+variable "ecs_sg_id" {
   type        = string
   description = "The ECS security group."
 }

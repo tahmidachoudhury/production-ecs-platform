@@ -16,6 +16,7 @@ resource "aws_ecs_cluster" "main" {
 resource "aws_ecs_task_definition" "app" {
   family                   = "${var.project_name}-task"
   requires_compatibilities = ["FARGATE"]
+  network_mode             = "awsvpc"
   cpu                      = var.cpu
   memory                   = var.memory
   task_role_arn            = var.task_role_arn
@@ -39,8 +40,8 @@ resource "aws_ecs_task_definition" "app" {
           value = "random string"
         },
         {
-          name  = "DATABASE_URL"
-          value = var.db_secret
+          name      = "DATABASE_URL"
+          valueFrom = var.db_secret_arn
         },
       ]
 
@@ -65,7 +66,7 @@ resource "aws_ecs_service" "app" {
   name            = "${var.project_name}-service"
   cluster         = aws_ecs_cluster.main.id
   task_definition = aws_ecs_task_definition.app.arn
-  desired_count   = var.desired_count
+  desired_count   = var.number_of_tasks
   launch_type     = "FARGATE"
 
   network_configuration {

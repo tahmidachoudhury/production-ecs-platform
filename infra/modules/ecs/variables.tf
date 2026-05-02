@@ -33,9 +33,9 @@ variable "execution_role_arn" {
   description = "The IAM role for the ECS container agent and Docker deamon."
 }
 
-variable "db_secret" {
+variable "db_secret_arn" {
   type        = string
-  description = "The RDS database secret for PostgreSQL."
+  description = "The RDS database secret from AWS Secrets Manager."
 }
 
 variable "aws_region" {
@@ -48,7 +48,7 @@ variable "cloudwatch_log_group_name" {
   type        = string
 }
 
-variable "desired_count" {
+variable "number_of_tasks" {
   description = "The number of tasks being run in the ECS Service."
   type        = number
 }

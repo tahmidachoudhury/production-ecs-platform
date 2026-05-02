@@ -32,3 +32,13 @@ variable "storage_type" {
   description = "The type of storage for the DB."
   type        = string
 }
+
+variable "private_subnet_ids" {
+  description = "The private subnet IDs for the DB subnet group."
+  type        = list(string)
+}
+
+variable "rds_sg_id" {
+  type        = string
+  description = "ID of the RDS security group to allow traffic on port 5432."
+}

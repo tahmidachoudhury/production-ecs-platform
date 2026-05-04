@@ -37,11 +37,11 @@ module "rds" {
   source             = "./modules/rds"
   project_name       = var.project_name
   environment        = var.environment
-  engine             = "postgres"
-  engine_version     = "18.3"
-  instance           = "db.t3.micro"
-  storage_size       = 20
-  storage_type       = "gp2"
+  engine             = var.engine
+  engine_version     = var.engine_version
+  instance           = var.instance
+  storage_size       = var.storage_size
+  storage_type       = var.storage_type
   private_subnet_ids = module.networking.private_subnet_ids
   rds_sg_id          = module.security_groups.rds_sg_id
 }
@@ -81,10 +81,10 @@ module "ecs" {
   task_role_arn             = module.iam.ecs_task_role_arn
   execution_role_arn        = module.iam.execution_role_arn
   cloudwatch_log_group_name = module.cloudwatch.log_group_name
-  cpu                       = 256
-  memory                    = 512
-  container_port            = 3000
-  number_of_tasks           = 1
+  cpu                       = var.cpu
+  memory                    = var.memory
+  container_port            = var.container_port
+  number_of_tasks           = var.number_of_tasks
   depends_on                = [module.rds]
   rds_port                  = module.rds.port
   rds_address               = module.rds.address

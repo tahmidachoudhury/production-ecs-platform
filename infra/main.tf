@@ -18,12 +18,13 @@ module "security_groups" {
 }
 
 module "alb" {
-  source         = "./modules/alb"
-  project_name   = var.project_name
-  environment    = var.environment
-  alb_sg_id      = module.security_groups.alb_sg_id
-  public_subnets = module.networking.public_subnet_ids
-  vpc_id         = module.networking.vpc_id
+  source              = "./modules/alb"
+  project_name        = var.project_name
+  environment         = var.environment
+  alb_sg_id           = module.security_groups.alb_sg_id
+  public_subnets      = module.networking.public_subnet_ids
+  vpc_id              = module.networking.vpc_id
+  acm_certificate_arn = module.acm.analytics_certificate_arn
 }
 
 module "cloudwatch" {
@@ -43,6 +44,28 @@ module "rds" {
   storage_type       = "gp2"
   private_subnet_ids = module.networking.private_subnet_ids
   rds_sg_id          = module.security_groups.rds_sg_id
+}
+
+module "acm" {
+  source                  = "./modules/acm"
+  project_name            = var.project_name
+  environment             = var.environment
+  subdomain_name          = var.subdomain_name
+  domain_name             = var.domain_name
+  alb_zone_id             = module.alb.alb_zone_id
+  alb_dns_name            = module.alb.alb_dns_name
+  validation_record_fqdns = module.dns.cert_validation_fqdns
+}
+
+module "dns" {
+  source                    = "./modules/dns"
+  project_name              = var.project_name
+  environment               = var.environment
+  domain_name               = var.domain_name
+  subdomain_name            = var.subdomain_name
+  alb_dns_name              = module.alb.alb_dns_name
+  alb_zone_id               = module.alb.alb_zone_id
+  domain_validation_options = module.acm.domain_validation_options
 }
 
 module "ecs" {

@@ -23,3 +23,13 @@ variable "container_image" {
   description = "Full ECR image URI for the backend container."
   type        = string
 }
+
+variable "domain_name" {
+  description = "The domain name of the application that is registered on Route53."
+  type        = string
+}
+
+variable "subdomain_name" {
+  type        = string
+  description = "The subdomain name of the application from Route53."
+}

@@ -22,3 +22,8 @@ variable "vpc_id" {
   type        = string
   description = "The ID of the VPC where SGs will be created"
 }
+
+variable "acm_certificate_arn" {
+  type        = string
+  description = "The ARN of the acm certificate for the HTTPS listener."
+}

@@ -14,21 +14,21 @@ resource "aws_iam_role" "ecs_task_execution_role" {
   })
 }
 
-resource "aws_iam_role_policy" "ecs_task_execution_secrets" {
-  name = "${var.project_name}-${var.environment}-exec-secrets"
-  role = aws_iam_role.ecs_task_execution_role.id
+# resource "aws_iam_role_policy" "ecs_task_execution_secrets" {
+#   name = "${var.project_name}-${var.environment}-exec-secrets"
+#   role = aws_iam_role.ecs_task_execution_role.id
 
-  policy = jsonencode({
-    Version = "2012-10-17"
-    Statement = [
-      {
-        Effect   = "Allow"
-        Action   = ["secretsmanager:GetSecretValue"]
-        Resource = var.database_url_secret_arn
-      },
-    ]
-  })
-}
+#   policy = jsonencode({
+#     Version = "2012-10-17"
+#     Statement = [
+#       {
+#         Effect   = "Allow"
+#         Action   = ["secretsmanager:GetSecretValue"]
+#         Resource = var.database_url_secret_arn
+#       },
+#     ]
+#   })
+# }
 
 resource "aws_iam_role_policy_attachment" "ecs_task_execution_role_policy" {
   role       = aws_iam_role.ecs_task_execution_role.name

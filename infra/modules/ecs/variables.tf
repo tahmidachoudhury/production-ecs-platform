@@ -33,11 +33,6 @@ variable "execution_role_arn" {
   description = "The IAM role for the ECS container agent and Docker deamon."
 }
 
-variable "db_secret_arn" {
-  type        = string
-  description = "The RDS database secret from AWS Secrets Manager."
-}
-
 variable "aws_region" {
   type        = string
   description = "The AWS region of where the resources are deployed."
@@ -76,4 +71,19 @@ variable "ecs_sg_id" {
 variable "private_subnet_ids" {
   description = "List of private subnet IDs where ECS tasks will run."
   type        = list(string)
+}
+
+variable "rds_address" {
+  type        = string
+  description = " The hostname of the RDS instance."
+}
+
+variable "rds_port" {
+  type        = number
+  description = "The database port."
+}
+
+variable "rds_db_secret" {
+  type        = string
+  description = "Password for the master DB user."
 }

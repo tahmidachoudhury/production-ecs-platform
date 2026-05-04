@@ -1,8 +1,7 @@
 module "iam" {
-  source                  = "./modules/iam"
-  project_name            = var.project_name
-  environment             = var.environment
-  database_url_secret_arn = module.application.database_url_secret_arn
+  source       = "./modules/iam"
+  project_name = var.project_name
+  environment  = var.environment
 }
 
 module "networking" {
@@ -29,12 +28,6 @@ module "alb" {
 
 module "cloudwatch" {
   source       = "./modules/cloudwatch"
-  project_name = var.project_name
-  environment  = var.environment
-}
-
-module "application" {
-  source       = "./modules/application"
   project_name = var.project_name
   environment  = var.environment
 }
@@ -69,6 +62,8 @@ module "ecs" {
   memory                    = 512
   container_port            = 3000
   number_of_tasks           = 1
-  db_secret_arn             = module.application.database_url_secret_arn
   depends_on                = [module.rds]
+  rds_port                  = module.rds.port
+  rds_address               = module.rds.address
+  rds_db_secret             = module.rds.db_secret
 }

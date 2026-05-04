@@ -8,7 +8,7 @@ variable "environment" {
   description = "The deployment environment (dev or prod)"
 }
 
-variable "database_url_secret_arn" {
-  type        = string
-  description = "ARN of the DATABASE_URL secret in Secrets Manager"
-}
+# variable "database_url_secret_arn" {
+#   type        = string
+#   description = "ARN of the DATABASE_URL secret in Secrets Manager"
+# }

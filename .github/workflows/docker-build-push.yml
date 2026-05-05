@@ -1,0 +1,47 @@
+name: Docker Build & Push
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "app/"
+
+jobs:
+  lint-and-test:
+    name: Build & Push
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Lint
+        run: npm run eslint
+
+      - name: Run Tests
+        run: npm run test
+
+  build-and-push:
+    name: Build & Push
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v6.1.0
+        with:
+          aws-region: us-east-2
+          role-to-assume: arn:aws:iam::123456789100:role/my-github-actions-role
+          role-session-name: MySessionName
+
+      - name: Build Docker Image
+        run: docker build -t ${ECR.REPOSITORY}/${PROJECT.NAME}:${VERSION} .
+
+      - name: Push Docker Image
+        run: docker push ${ECR.REPOSITORY}/${PROJECT.NAME}:${VERSION}

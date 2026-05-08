@@ -20,6 +20,9 @@ jobs:
   terraform-plan:
     name: Terraform Plan
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./infra
 
     steps:
       - name: Checkout Code
@@ -35,17 +38,14 @@ jobs:
         uses: hashicorp/setup-terraform@v4
 
       - name: Terraform Format Check
-        working-directory: infra
         run: terraform fmt -check -recursive
         continue-on-error: false
 
       - name: Terraform Init
-        working-directory: infra
         run: |
           terraform init -reconfigure
 
       - name: Terraform Validate
-        working-directory: infra
         run: terraform validate
 
       - name: Setup tflint
@@ -54,13 +54,11 @@ jobs:
           tflint_version: latest
 
       - name: Run tflint
-        working-directory: infra
         run: |
           tflint --init
           tflint --recursive || true
 
       - name: Terraform Plan
-        working-directory: infra
         id: plan
         run: |
           terraform plan \

@@ -8,7 +8,7 @@ terraform {
 
   backend "s3" {
     bucket  = "umami-ecs-terraform-state"
-    key     = "terraform.tfstate"
+    key     = "umami-ecs-app/terraform.tfstate"
     region  = "us-east-2"
     encrypt = true
 

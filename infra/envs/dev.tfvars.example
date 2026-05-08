@@ -1,0 +1,27 @@
+# envs/dev.tfvars.example
+# Copy this file to dev.tfvars and fill in your own values
+
+environment = "dev"
+
+container_image = "YOUR_ACCOUNT_ID.dkr.ecr.eu-west-2.amazonaws.com/umami-ecs-app-dev:latest"
+
+subdomain_name = "example.yourdomain.com"
+
+domain_name = "yourdomain.com
+
+aws_region = "eu-west-2"
+
+#rds
+
+engine             = "postgres"
+engine_version     = "18.3"
+instance           = "db.t3.micro"
+storage_size       = 20
+storage_type       = "gp2"
+
+#ecs
+
+cpu                       = 256
+memory                    = 512
+container_port            = 3000
+number_of_tasks           = 1

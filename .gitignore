@@ -9,6 +9,9 @@ crash..log
 terraform.tfvars
 terraform.tfvars.json
 
+!dev.tfvars
+!prod.tfvars
+
 override.tf
 override.tf.json
 *_override.tf

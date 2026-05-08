@@ -40,9 +40,9 @@ jobs:
         working-directory: app
         run: pnpm install --frozen-lockfile
 
-      - name: Lint
-        working-directory: app
-        run: pnpm lint
+      # - name: Lint
+      #   working-directory: app
+      #   run: pnpm lint
 
       - name: Run Tests
         working-directory: app

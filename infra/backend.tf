@@ -14,8 +14,6 @@ terraform {
 
     #   state locking set to true
     use_lockfile = true
-
-    workspace_key_prefix = "umami-ecs-app"
   }
 }
 

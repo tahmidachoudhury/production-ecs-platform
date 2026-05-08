@@ -55,7 +55,7 @@ jobs:
           exit 0
 
       - name: Terraform Apply
-        run: terraform apply
+        run: terraform apply -var-file="dev.tfvars"
 
       - name: Terraform Output
         run: terraform output

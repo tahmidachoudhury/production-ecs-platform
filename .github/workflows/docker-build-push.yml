@@ -84,4 +84,5 @@ jobs:
           context: app/
           file: app/Dockerfile
           push: true
+          no-cache: true
           tags: ${{ steps.login-ecr.outputs.registry }}/${{ env.ECR_REPOSITORY }}:${{ github.sha }}

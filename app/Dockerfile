@@ -1,11 +1,12 @@
 # stage 1: dependencies
 ARG NODE_IMAGE_VERSION="22-slim"
-ARG PNPM_VERSION="9.15.9"
 
 FROM node:${NODE_IMAGE_VERSION} AS deps
 WORKDIR /app
 COPY package.json pnpm-lock.yaml ./
+ARG PNPM_VERSION="9.15.9"
 RUN npm install -g pnpm@${PNPM_VERSION}
+RUN pnpm --version
 RUN pnpm install --frozen-lockfile
 
 # stage 2: build

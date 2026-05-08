@@ -50,6 +50,8 @@ jobs:
 
       - name: Build app
         working-directory: app
+        env:
+          DATABASE_URL: postgresql://dummy:dummy@localhost:5432/dummy
         run: pnpm build
 
   build-and-push:

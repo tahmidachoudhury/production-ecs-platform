@@ -26,9 +26,11 @@ ARG PRISMA_VERSION="6.19.0"
 
 RUN npm install -g pnpm
 
-RUN pnpm --allow-build='@prisma/engines' add npm-run-all dotenv chalk semver \
+RUN pnpm add npm-run-all dotenv chalk semver \
     prisma@${PRISMA_VERSION} \
-    @prisma/adapter-pg@${PRISMA_VERSION}
+    @prisma/adapter-pg@${PRISMA_VERSION} \
+    --allow-build=prisma \
+    --allow-build=@prisma/engines
 
 COPY --from=build /app/global-bundle.pem /app/global-bundle.pem
 COPY --from=build /app/public ./public

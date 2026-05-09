@@ -43,6 +43,6 @@ jobs:
           echo "## Destroy Complete" >> $GITHUB_STEP_SUMMARY
           echo "| Field | Value |" >> $GITHUB_STEP_SUMMARY
           echo "|-------|-------|" >> $GITHUB_STEP_SUMMARY
-          echo "| Environment | $ENV |" >> $GITHUB_STEP_SUMMARY
+          echo "| Environment | DEV |" >> $GITHUB_STEP_SUMMARY
           echo "| Status | All resources destroyed |" >> $GITHUB_STEP_SUMMARY
           echo "| Triggered by | ${{ github.actor }} |" >> $GITHUB_STEP_SUMMARY

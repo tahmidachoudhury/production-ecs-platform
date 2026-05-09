@@ -245,15 +245,15 @@ docker compose down -v
 
 #### 3a. Terraform Apply Steps
 
-![Terraform Apply Steps](./docs/cicd/tf-apply-2.png)
+![Terraform Apply Steps](./docs/cicd/tf-apply-steps.png)
 
 ### 4. Terraform Destroy
 
-![Terraform Destroy]()
+![Terraform Destroy](./docs/cicd/tf-destroy.png)
 
 #### 4a. Terraform Destroy Steps
 
-![Terraform Destroy Steps]()
+![Terraform Destroy Steps](./docs/cicd/tf-destroy-2.png)
 
 ---
 

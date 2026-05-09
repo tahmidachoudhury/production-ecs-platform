@@ -6,17 +6,18 @@ Production-style AWS ECS Fargate deployment provisioned with Terraform and autom
 
 ### Table of Contents
 
-- Live Demo
-- Architecture
-- Technology Stack
-- Repository Structure
-- Features
-- Local Development
-- Author
+- [Live Demo](#live-demo)
+- [Architecture](#architecture)
+- [Technology Stack](#technology-stack)
+- [Repository Structure](#repository-structure)
+- [Features](#features)
+- [Local Development](#how-to-set-up-locally)
+- [CI/CD](#cicd)
+- [Author](#author)
 
 ---
 
-## Optional: Live Demo
+## Live Demo
 
 …
 
@@ -154,6 +155,12 @@ infra
     ├── terraform-destroy.yml
     └── terraform-plan.yml
 ```
+
+---
+
+## Features
+
+…
 
 ---
 

@@ -18,7 +18,9 @@ Production-style AWS ECS Fargate deployment provisioned with Terraform and autom
 
 ## Demo
 
-…
+> URL: https://analytics.tahmidchoudhury.uk
+
+![ECS demo video](./docs/ecs-demo.gif)
 
 ---
 

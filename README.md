@@ -6,18 +6,17 @@ Production-style AWS ECS Fargate deployment provisioned with Terraform and autom
 
 ### Table of Contents
 
-- [Live Demo](#live-demo)
+- [Demo](#demo)
 - [Architecture](#architecture)
 - [Technology Stack](#technology-stack)
 - [Repository Structure](#repository-structure)
-- [Features](#features)
 - [Local Development](#how-to-set-up-locally)
 - [CI/CD](#cicd)
 - [Author](#author)
 
 ---
 
-## Live Demo
+## Demo
 
 …
 
@@ -32,7 +31,7 @@ The infrastructure is designed for high availability, security, and scalability.
 Key components:
 
 - VPC with public and private subnets across multiple AZs
-- Application Load Balancer (ALB) in public subnets
+- Application Load Balancer (ALB) with a health check on `/api/heartbeat`
 - ECS Fargate service running tasks in private subnets
 - CloudWatch enabled for DB and Task logs
 - NAT Gateway for outbound internet access from private subnets
@@ -155,12 +154,6 @@ infra
     ├── terraform-destroy.yml
     └── terraform-plan.yml
 ```
-
----
-
-## Features
-
-…
 
 ---
 

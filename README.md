@@ -233,6 +233,8 @@ docker compose down -v
 
 ![Push to ECR](./docs/cicd/push-to-ecr.png)
 
+---
+
 ### 2. Terraform Plan
 
 ![Terraform Plan](./docs/cicd/tf-plan.png)
@@ -241,6 +243,8 @@ docker compose down -v
 
 ![Terraform Plan Steps](./docs/cicd/tf-plan-2.png)
 
+---
+
 ### 3. Terraform Apply
 
 ![Terraform Apply](./docs/cicd/tf-apply.png)
@@ -248,6 +252,12 @@ docker compose down -v
 #### 3a. Terraform Apply Steps
 
 ![Terraform Apply Steps](./docs/cicd/tf-apply-steps.png)
+
+#### 3b. Post Deploy Check
+
+![Terraform Apply Steps](./docs/cicd/tf-apply-check.png)
+
+---
 
 ### 4. Terraform Destroy
 

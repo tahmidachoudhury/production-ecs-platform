@@ -2,6 +2,8 @@
 
 Production-style AWS ECS Fargate deployment provisioned with Terraform and automated through GitHub Actions CI/CD pipelines. This project includes ECS, ECR, ALB, ACM, Route53, RDS PostgreSQL, Docker, observability, and secure infrastructure design using modular Infrastructure as Code principles.
 
+I built this project to showcase my cloud, networking, and infrastructure skills. I chose Umami because I had already used it for hosted frontend projects.
+
 ---
 
 ### Table of Contents

@@ -1,6 +1,6 @@
 # Umami Analytics: Deployed via AWS ECS Fargate and IaC
 
-Production-style AWS ECS Fargate deployment provisioned with Terraform and automated through GitHub Actions CI/CD pipelines. This project includes ECS, ECR, ALB, ACM, Route53, RDS PostgreSQL, Docker, observability, and secure infrastructure design using modular Infrastructure as Code principles.
+This project deploys a Dockerised analytics application to AWS ECS Fargate using Terraform and GitHub Actions CI/CD. It includes networking, load balancing, HTTPS, PostgreSQL, observability, and modular infrastructure configuration.
 
 I built this project to showcase my cloud, networking, and infrastructure skills. I chose Umami because I had already used it for hosted frontend projects.
 

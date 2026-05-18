@@ -101,52 +101,20 @@ infra
 │   ├── main.tf
 │   ├── modules
 │   │   └── ecr
-│   │       ├── main.tf
-│   │       ├── outputs.tf
-│   │       └── variables.tf
 │   ├── provider.tf
 │   └── variables.tf
 ├── envs
 ├── modules
 │   ├── acm
-│   │   ├── main.tf
-│   │   ├── outputs.tf
-│   │   └── variables.tf
 │   ├── alb
-│   │   ├── main.tf
-│   │   ├── outputs.tf
-│   │   └── variables.tf
-│   ├── application
-│   │   ├── main.tf
-│   │   ├── outputs.tf
-│   │   └── variables.tf
+│   ├── secrets
 │   ├── cloudwatch
-│   │   ├── main.tf
-│   │   ├── outputs.tf
-│   │   └── variables.tf
 │   ├── dns
-│   │   ├── main.tf
-│   │   ├── outputs.tf
-│   │   └── variables.tf
 │   ├── ecs
-│   │   ├── main.tf
-│   │   └── variables.tf
 │   ├── iam
-│   │   ├── main.tf
-│   │   ├── outputs.tf
-│   │   └── variables.tf
 │   ├── networking
-│   │   ├── main.tf
-│   │   ├── outputs.tf
-│   │   └── variables.tf
 │   ├── rds
-│   │   ├── main.tf
-│   │   ├── outputs.tf
-│   │   └── variables.tf
 │   └── security_groups
-│       ├── main.tf
-│       ├── outputs.tf
-│       └── variables.tf
 ├── backend.tf
 ├── main.tf
 ├── outputs.tf

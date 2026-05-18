@@ -58,6 +58,15 @@ jobs:
           tflint --init
           tflint --recursive || true
 
+      - name: Run Trivy security scan
+        uses: aquasecurity/trivy-action@master
+        with:
+          scan-type: config
+          scan-ref: Infra/
+          severity: CRITICAL,HIGH
+          exit-code: 0
+          format: table
+
       - name: Terraform Plan
         id: plan
         run: |

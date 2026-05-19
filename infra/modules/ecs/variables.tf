@@ -73,17 +73,23 @@ variable "private_subnet_ids" {
   type        = list(string)
 }
 
-variable "rds_address" {
+variable "db_secret_arn" {
   type        = string
-  description = " The hostname of the RDS instance."
+  sensitive   = true
+  description = "ARN of the Secrets Manager secret containing RDS master credentials (username and password)."
 }
 
-variable "rds_port" {
+variable "db_host" {
+  type        = string
+  description = "RDS instance hostname."
+}
+
+variable "db_port" {
   type        = number
-  description = "The database port."
+  description = "RDS instance port."
 }
 
-variable "rds_db_secret" {
+variable "db_name" {
   type        = string
-  description = "Password for the master DB user."
+  description = "RDS database name."
 }

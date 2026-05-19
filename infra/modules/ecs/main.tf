@@ -40,8 +40,27 @@ resource "aws_ecs_task_definition" "app" {
           value = "random string"
         },
         {
-          name  = "DATABASE_URL"
-          value = "postgresql://postgres:${var.rds_db_secret}@${var.rds_address}:${var.rds_port}/mydb?sslmode=require&sslrootcert=/app/global-bundle.pem"
+          name  = "DB_HOST"
+          value = var.db_host
+        },
+        {
+          name  = "DB_PORT"
+          value = tostring(var.db_port)
+        },
+        {
+          name  = "DB_NAME"
+          value = var.db_name
+        },
+      ]
+
+      secrets = [
+        {
+          name      = "DB_USERNAME"
+          valueFrom = "${var.db_secret_arn}:username::"
+        },
+        {
+          name      = "DB_PASSWORD"
+          valueFrom = "${var.db_secret_arn}:password::"
         },
       ]
 

@@ -1,6 +1,6 @@
 environment = "dev"
 
-container_image = "851725183654.dkr.ecr.eu-west-2.amazonaws.com/umami-ecs-app-dev:c46eb7e216ece1fa024bfe51f442a11bcc31a4df"
+container_image = "851725183654.dkr.ecr.eu-west-2.amazonaws.com/umami-ecs-app-dev:3712dc2f2df26fe532690b99ff3272a5ae41be69"
 
 subdomain_name = "analytics.tahmidchoudhury.uk"
 
